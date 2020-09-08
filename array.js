@@ -95,7 +95,6 @@ function mergeSortedArray(arr1, arr2) {
 
 var swap = function (arr, i, j) {
 
-	console.log("i " + i + " j " + j)
 	var temp = arr[i];
 	arr[i] = arr[j];
 	arr[j] = temp
