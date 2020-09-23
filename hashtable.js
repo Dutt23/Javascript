@@ -1,5 +1,12 @@
 
 //  Add contains
+// Fast insert
+// Fast lookup
+// Any keys can be used
+
+// down side
+// unordered 
+// slow key iteration
 class HashTable {
 	constructor(size) {
 		this.data = new Array(size)
