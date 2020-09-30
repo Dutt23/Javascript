@@ -63,19 +63,17 @@ class LinkedList {
   remove(index) {
     if (index === undefined || index < 0 || index >= this.length)
       return this
-    if(index === 0)
-    {
+    if (index === 0) {
       let currentNode = this.head
       const temp = currentNode.next
       this.head = temp
       return this
     }
     let currentNode = this.traverseToIndex(index - 1)
-    if(currentNode !== undefined && currentNode !== null)
-    {
+    if (currentNode !== undefined && currentNode !== null) {
       const temp = currentNode.next.next
       currentNode.next = temp
-      this.length --;
+      this.length--;
     }
     return this
 
@@ -103,6 +101,29 @@ class LinkedList {
     }
   }
 }
+const reverse = (list) => {
+  let current = list.head
+  let next = null
+  let prev = null
+  while (current !== null) {
+    next = current.next
+    current.next = prev
+    prev = current
+    current = next
+  }
+  list.head = prev
+  return list
+}
+
+const reverse2 = (head) => {
+  if (head == null || head.next == null)
+    return head
+    // Go till the end
+    rest = reverse2(head.next)
+    head.next.next = head
+    head.next = null
+    return rest
+}
 
 const myLinkedList = new LinkedList(10)
 myLinkedList.append(40)
@@ -111,5 +132,8 @@ myLinkedList.prepend(16)
 myLinkedList.insert(2, 49)
 myLinkedList.append(17)
 
-console.log(myLinkedList.print())
-console.log(myLinkedList.length)
+// console.log(myLinkedList.print())
+// console.log(myLinkedList.length)
+// console.log(reverse(myLinkedList))
+console.log(reverse2(myLinkedList.head))
+
