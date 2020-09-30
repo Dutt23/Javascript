@@ -101,17 +101,21 @@ class LinkedList {
     }
   }
 }
-const reverse = (list) => {
-  let current = list.head
-  let next = null
-  let prev = null
-  while (current !== null) {
-    next = current.next
-    current.next = prev
-    prev = current
-    current = next
+
+// "[1, 10, 88, 90]"
+const reverse = (list) =>{
+  let first = list.head
+  let second = first.next
+  // making sure the head is also the tail
+  list.tail = first
+  while(second){
+    const temp = second.next
+    second.next = first
+    first = second
+    second = temp
   }
-  list.head = prev
+  list.head = first
+  list.tail.next = null
   return list
 }
 
@@ -132,8 +136,8 @@ myLinkedList.prepend(16)
 myLinkedList.insert(2, 49)
 myLinkedList.append(17)
 
-// console.log(myLinkedList.print())
+console.log(myLinkedList.print())
 // console.log(myLinkedList.length)
-// console.log(reverse(myLinkedList))
-console.log(reverse2(myLinkedList.head))
+console.log(reverse(myLinkedList).print())
+// console.log(reverse2(myLinkedList.head))
 
