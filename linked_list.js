@@ -41,20 +41,37 @@ class LinkedList {
     return this
   }
   insert(index, value) {
+    if (index === undefined || value === undefined)
+      return this
+      
+    if (index >= this.length)
+      return this.append(value)
+
+    else if (index === 0)
+      return this.prepend(value)
+
+    const newNode = new Node(value)
+    let currentNode = this.traverseToIndex(index -1)
+    const temp = currentNode.next
+    currentNode.next = newNode
+    newNode.next = temp
+    this.length++
+
+    return this
+  }
+
+  traverseToIndex(index) {
     let count = 0;
     let currentNode = this.head
     while (currentNode !== null) {
-      if (count === index - 1) {
-        const newNode = new Node(value)
-        const temp = currentNode.next
-        currentNode.next = newNode
-        newNode.next = temp
-        break;
+      if (count === index) {
+        return currentNode
       }
       else currentNode = currentNode.next
       count++;
+
     }
-    return this
+
   }
 
   print() {
