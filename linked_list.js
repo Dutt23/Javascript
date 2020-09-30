@@ -43,7 +43,7 @@ class LinkedList {
   insert(index, value) {
     if (index === undefined || value === undefined)
       return this
-      
+
     if (index >= this.length)
       return this.append(value)
 
@@ -51,13 +51,34 @@ class LinkedList {
       return this.prepend(value)
 
     const newNode = new Node(value)
-    let currentNode = this.traverseToIndex(index -1)
+    let currentNode = this.traverseToIndex(index - 1)
     const temp = currentNode.next
     currentNode.next = newNode
     newNode.next = temp
     this.length++
 
     return this
+  }
+
+  remove(index) {
+    if (index === undefined || index < 0 || index >= this.length)
+      return this
+    if(index === 0)
+    {
+      let currentNode = this.head
+      const temp = currentNode.next
+      this.head = temp
+      return this
+    }
+    let currentNode = this.traverseToIndex(index - 1)
+    if(currentNode !== undefined && currentNode !== null)
+    {
+      const temp = currentNode.next.next
+      currentNode.next = temp
+      this.length --;
+    }
+    return this
+
   }
 
   traverseToIndex(index) {
@@ -89,4 +110,6 @@ myLinkedList.prepend(5)
 myLinkedList.prepend(16)
 myLinkedList.insert(2, 49)
 myLinkedList.append(17)
+
 console.log(myLinkedList.print())
+console.log(myLinkedList.length)
