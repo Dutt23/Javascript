@@ -32,6 +32,31 @@ class DoublyLinkedList {
     return this
   }
 
+  remove(index)
+  {
+    if((!index&& index !==0) || index < 0)
+      return this
+    
+    this.length--;
+    if(index ===0)
+    {
+      const newHead = this.head.next
+      newHead.prev = null
+      this.head = newHead
+      return this
+      
+    }
+    let currentNode = this.traverseToIndex(index)
+    const prev = currentNode.prev
+    const next = currentNode.next
+    // If condition for handling the last index
+    if(prev)
+    prev.next = next
+    if(next)
+    next.prev = prev
+    return this
+  }
+
   insert(index, value) {
     if (index === undefined || value === undefined)
       return this
@@ -95,7 +120,8 @@ dll.prepend(30)
 dll.prepend(40)
 dll.append(80)
 dll.prepend(90)
-dll.insert(20,45)
+dll.insert(2,45)
 dll.printFromHead()
 console.log("=====")
-dll.printFromTail()
+dll.remove(0)
+console.log(dll.tail)
