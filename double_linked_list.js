@@ -34,7 +34,7 @@ class DoublyLinkedList {
 
   remove(index)
   {
-    if((!index&& index !==0) || index < 0)
+    if((!index&& index !==0) || index < 0 || index >= this.length)
       return this
     
     this.length--;
@@ -114,6 +114,26 @@ class DoublyLinkedList {
   }
 
 }
+
+// 10, 8, 9
+reverseddl = (list) =>{
+  if(!list)
+  return
+
+  let current = list.head
+  let temp = null
+  while(current){
+    temp = current.prev; 
+    current.prev = current.next; 
+    current.next = temp; 
+    current = current.prev;
+  }
+  const tail = list.tail
+  const head = list.head
+  list.head = tail
+  list.tail = head
+  return list
+}
 const dll = new DoublyLinkedList(10)
 dll.append(20)
 dll.prepend(30)
@@ -123,5 +143,8 @@ dll.prepend(90)
 dll.insert(2,45)
 dll.printFromHead()
 console.log("=====")
-dll.remove(0)
-console.log(dll.tail)
+dll.remove(200)
+// console.log(dll.tail)
+reverseddl(dll).printFromHead()
+dll.insert(2,21)
+dll.printFromHead()
