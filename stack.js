@@ -8,9 +8,12 @@ class Node {
 class Stack {
 
 	constructor(value) {
-		this.top = new Node(value)
-		this.bottom = this.top
-		this.length = 1
+		this.length = 0 
+		if (value) {
+			this.top = new Node(value)
+			this.bottom = this.top
+			this.length++
+		}
 	}
 	peek() {
 		if (this.top)
@@ -19,21 +22,28 @@ class Stack {
 	}
 	push(value) {
 		const newTop = new Node(value)
-		newTop.next = this.top
-		this.top = newTop
+		if (this.length === 0) {
+			this.top = newTop;
+			this.bottom = newTop;
+		}
+		else {
+			newTop.next = this.top
+			this.top = newTop
+		}
 		this.length++;
+		return this;
 	}
 	pop() {
 		let value = null
 		if (this.length <= 0)
 			return null
-		if (this.length == 1) {
+		if (this.length === 1) {
 			const temp = this.top
 			this.top = null
 			this.bottom = null
 			value = temp.value
 		}
-		else{
+		else {
 			const temp = this.top
 			this.top = this.top.next
 			value = temp.value
@@ -43,7 +53,7 @@ class Stack {
 	}
 }
 
-const myStack = new Stack(10)
+const myStack = new Stack()
 myStack.push(12)
 myStack.push(13)
 console.log(myStack)
