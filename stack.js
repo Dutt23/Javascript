@@ -8,7 +8,7 @@ class Node {
 class Stack {
 
 	constructor(value) {
-		this.length = 0 
+		this.length = 0
 		if (value) {
 			this.top = new Node(value)
 			this.bottom = this.top
@@ -53,13 +53,36 @@ class Stack {
 	}
 }
 
-const myStack = new Stack()
+class ArrayStack {
+
+	constructor(value) {
+		this.array = []
+		if (value)
+			this.array.push(value)
+	}
+
+	peek() {
+		if (this.array.length > 0)
+			return this.array[this.array.length - 1]
+		return null
+	}
+	push(value) {
+		if(value)
+		this.array.push(value)
+	}
+	pop(){
+		return this.array.pop()
+	}
+}
+
+const myStack = new ArrayStack(10)
 myStack.push(12)
 myStack.push(13)
 console.log(myStack)
-console.log(myStack.peek())
-console.log(myStack.pop())
-console.log(myStack.pop())
-console.log(myStack.pop())
-console.log(myStack)
-console.log(myStack.pop())
+
+// console.log(myStack.peek())
+// console.log(myStack.pop())
+// console.log(myStack.pop())
+// console.log(myStack.pop())
+// console.log(myStack)
+// console.log(myStack.pop())
