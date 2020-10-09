@@ -6,7 +6,6 @@ class Node {
 }
 
 class Stack {
-
 	constructor(value) {
 		this.length = 0
 		if (value) {
@@ -57,7 +56,9 @@ class ArrayStack {
 
 	constructor(value) {
 		this.array = []
+		this.length = 0;
 		if (value)
+		  this.length ++;
 			this.array.push(value)
 	}
 
@@ -67,18 +68,62 @@ class ArrayStack {
 		return null
 	}
 	push(value) {
-		if(value)
-		this.array.push(value)
+		if (value)
+		{
+			this.length ++;
+			this.array.push(value)
+		}
+			
 	}
-	pop(){
+	pop() {
+		this.length --;
 		return this.array.pop()
 	}
 }
 
-const myStack = new ArrayStack(10)
-myStack.push(12)
-myStack.push(13)
-console.log(myStack)
+class QueueStack {
+	constructor(value) {
+		this.stack1 = new ArrayStack()
+		this.stack2 = new ArrayStack()
+		this.length = 0;
+		if (value) {
+			this.stack1.push(value)
+		}
+	}
+
+	peek() {
+		if (this.stack2.length === 0) {
+			this.shiftItems()
+		}
+		return this.stack2.peek();
+	}
+
+	enqueue(value) {
+		if (!value)
+			return null
+		this.stack1.push(value)
+	}
+	shiftItems() {
+		if (this.stack2.length === 0) {
+			while (this.stack1.length !== 0) {
+				this.stack2.push(this.stack1.pop())
+			}
+		}
+	}
+	dequeue() {
+		if (this.stack2.length === 0) {
+			this.shiftItems()
+		}
+		return this.stack2.pop();
+	}
+}
+
+const myStack = new QueueStack(10)
+myStack.enqueue(12)
+myStack.enqueue(13)
+myStack.enqueue(14)
+myStack.dequeue()
+console.log(myStack.peek())
 
 // console.log(myStack.peek())
 // console.log(myStack.pop())

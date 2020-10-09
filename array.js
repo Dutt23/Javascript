@@ -35,6 +35,7 @@ class MyArray {
 	delete(index) {
 		const item = this.data[index]
 		this.shiftItems(index)
+		this.length--;
 		return item
 	}
 
@@ -43,7 +44,6 @@ class MyArray {
 			this.data[i] = this.data[i + 1]
 		}
 		delete this.data[this.length]
-		this.length--;
 	}
 
 	// add(index) 
