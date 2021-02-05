@@ -26,6 +26,7 @@ class BST {
 		const newNode = new BSTNode(value);
 		if (this.root === null) {
 			this.root = newNode
+			this.nodes++;
 			return this;
 		}
 
@@ -90,5 +91,6 @@ tree.insert(9)
 tree.insert(12)
 tree.insert(11)
 console.log(tree.lookup(9))
+console.log(tree.getTotalNodes())
 // console.log(tree.leftHeight)
 // console.log(tree.rightHeight)
