@@ -58,8 +58,6 @@ class BST {
 
 	determineNextNodeValue = (node, value) => node.value < value ? node.right : node.left
 
-	// setNextNode = (node, value) => node.value < value ? node.right = newNode : node.left = newNode
-
 	lookup(value) {
 		if (this.root !== null && this.root.value === value)
 			return this.root
@@ -91,6 +89,6 @@ tree.insert(7)
 tree.insert(9)
 tree.insert(12)
 tree.insert(11)
-console.log(tree.lookup(90))
+console.log(tree.lookup(9))
 // console.log(tree.leftHeight)
 // console.log(tree.rightHeight)
