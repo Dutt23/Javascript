@@ -57,8 +57,6 @@ class BST {
 
 	getTotalNodes = () => this.nodes;
 
-	determineNextNodeValue = (node, value) => node.value < value ? node.right : node.left
-
 	lookup(value) {
 		if (this.root !== null && this.root.value === value)
 			return this.root
@@ -77,6 +75,92 @@ class BST {
 		return lookupNode;
 	}
 
+	remove(value) {
+		if (!this.root)
+			return false;
+		let currentNode = this.root
+		// reference to parent after removal
+		let parentNode = null;
+		while (currentNode) {
+			if (value < currentNode.value) {
+				parentNode = currentNode;
+				currentNode = currentNode.left
+			}
+			else if (value > currentNode.value) {
+				parentNode = currentNode;
+				currentNode = currentNode.right
+			}
+			// match found
+			else if (currentNode.value === value) {
+				// if right side is null 
+				if (currentNode.right === null) {
+					if (parentNode === null)
+						this.root = currentNode.left
+					else {
+						if (currentNode.value < parentNode.value) {
+							parentNode.left = currentNode.right
+						}
+						else if (currentNode.value > parentNode.value) {
+							parentNode.right = currentNode.right
+						}
+					}
+				}
+				// The node after the removal node does not have left node
+				else if (currentNode.right.left === null) {
+					if (parentNode === null)
+						this.root = currentNode.left
+					else {
+						currentNode.right.left = currentNode.left
+						if (currentNode.value < parentNode.value)
+							parentNode.left = currentNode.right
+						if (currentNode.value > parentNode.value)
+							parentNode.right = currentNode.right
+					}
+				}
+				// The right node after the removal node has both nodes
+				else {
+					var leftMost = currentNode.right.left;
+					var leftMostParent = currentNode.right;
+					while (leftMost.left !== null) {
+						leftMostParent = leftMost;
+						leftMost = leftMost.left
+					}
+					leftMostParent.left = leftMost.right;
+					leftMost.left = currentNode.left;
+					leftMost.right = currentNode.right;
+					if (parentNode === null)
+						this.root = leftMost
+					else {
+						if (currentNode.value > parentNode.value)
+							parentNode.right = leftMost
+						else if (currentNode.value < parentNode.value)
+							parentNode.left = leftMost
+					}
+				}
+				return true
+			}
+		}
+	}
+
+	determineNextNodeValue = (node, value) => node.value < value ? node.right : node.left
+
+	minValue = (root) => {
+		var min = root.value;
+		while (root.left !== null) {
+			min = root.left.value
+			root = root.left
+		}
+		return min
+	}
+
+	inOrder = (node) => {
+		if (node !== null) {
+			this.inOrder(node.left)
+			console.log(node.value)
+			this.inOrder(node.right)
+		}
+	}
+
 	getNextNode = (node, value) => {
 		return node.value < value ? node.right : node.left
 	}
@@ -84,13 +168,24 @@ class BST {
 
 const tree = new BST();
 tree.insert(9)
-tree.insert(10)
-tree.insert(8)
-tree.insert(7)
-tree.insert(9)
-tree.insert(12)
-tree.insert(11)
-console.log(tree.lookup(9))
-console.log(tree.getTotalNodes())
+tree.insert(4)
+tree.insert(6)
+tree.insert(20)
+tree.insert(170)
+tree.insert(160)
+tree.insert(190)
+tree.insert(180)
+tree.insert(15)
+tree.insert(1)
+console.log(tree.remove(170))
+console.log("=====")
+console.log(JSON.stringify(traverse(tree.root)))
 // console.log(tree.leftHeight)
 // console.log(tree.rightHeight)
+
+function traverse(node) {
+  const tree = { value: node.value };
+  tree.left = node.left === null ? null : traverse(node.left);
+  tree.right = node.right === null ? null : traverse(node.right);
+  return tree;
+}
