@@ -295,31 +295,29 @@ var rightRotate = function (nums, rotation) {
 	reverseArray(nums, 0, nums.length - 1)
 	reverseArray(nums, 0, rotation - 1)
 	reverseArray(nums, rotation, nums.length - 1)
-return nums
+	return nums
 }
 
-var leftRotate = function( nums , rotation)
-{
+var leftRotate = function (nums, rotation) {
 	reverseArray(nums, 0, rotation - 1)
-	reverseArray(nums, rotation  , nums.length - 1)
-	reverseArray(nums, 0 , nums.length - 1)
+	reverseArray(nums, 0, nums.length - 1)
+	reverseArray(nums, rotation, nums.length - 1)
 	return nums
 }
 
 var reverseArray = function (nums, start, end) {
-	while (start < end)
-	{
+	while (start < end) {
 		let temp = nums[start]
 		nums[start] = nums[end]
 		nums[end] = temp
-		start ++
-		end --
+		start++
+		end--
 	}
 	return nums
 }
 
 console.log(leftRotate([1, 2, 3, 4, 5], 3))
-// console.log(rightRotate([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3))
+console.log(rightRotate([1, 2, 3, 4, 5], 3))
 
 // Left rotate
 
@@ -327,3 +325,51 @@ console.log(leftRotate([1, 2, 3, 4, 5], 3))
 // 5, 4, 3, 2, 1 Full reverse
 // 5, 4, 1, 2, 3 reverse second half rotation -1 , n -1
 // 4, 5, 1, 2, 3 // reverse first half 0 , n - roation -1
+function textWrap(words, length) {
+	let lines = [];
+	let index = 0;
+
+	while (index < words.length) {
+		let count = words[index].length;
+		let last = index + 1
+
+		while (last < words.length) {
+			if (count + words[last].length + 1 > length) break;
+			count += words[last].length + 1;
+			last++;
+		}
+
+		let line = "";
+		let numberOfWordsBetween = last - index - 1
+
+		if (index === words.length || numberOfWordsBetween === 0) {
+			for (let i = index; i < last; i++) {
+				line += words[i] + " "
+			}
+			line = line.substr(0, line.length - 1)
+			for(let i = line.length; i <  length ; i ++)
+			line += " "
+		}
+		else {
+			let spaces = (length - count) / numberOfWordsBetween
+			let remainder = (length - count) % numberOfWordsBetween
+
+			for(let i = index ; i <last ; i++)
+			{
+				line += words[i];
+
+				if( i < last - 1)
+				{
+					let limit = spaces + ((i - index) < remainder ? 1 : 0)
+					for(let j = 0 ; j < limit ; j ++)
+					line += " ";
+				}
+			}
+		}
+		lines.push(line)
+		index = last
+	}
+	return lines;
+}
+
+console.log(textWrap(['This', 'is', 'an', 'example', 'of', 'text', 'justification.'], 16))
