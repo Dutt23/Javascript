@@ -1,9 +1,9 @@
 // Edge list 
-const edgeList = [[0, 2], [2, 3], [2,1], [1, 3]]
+const edgeList = [[0, 2], [2, 3], [2, 1], [1, 3]]
 
 // Adjacent list 
 // Index of the element is the node
-const adjacentList =[[2], [2,3], [0, 1, 3], [1, 2]]
+const adjacentList = [[2], [2, 3], [0, 1, 3], [1, 2]]
 
 // Adjaceny matric
 const matrix = [
@@ -12,3 +12,54 @@ const matrix = [
 	[1, 0, 1, 1],
 	[0, 1, 1, 0]
 ]
+
+class Graph {
+	constructor() {
+		this.numberOfNodes = 0;
+		this.adjacentList = {};
+	}
+
+	addVertex(node) {
+		this.adjacentList[node] = {}
+	}
+	addEdge(node, node2) {
+		if (!this.adjacentList[node] || !this.adjacentList[node2]) {
+			console.log("Node not present in graph cannot create an edge")
+			return;
+		}
+		this.adjacentList[node][node2] = true;
+		this.adjacentList[node2][node] = true;
+	}
+
+
+	showConnections(){
+		const allNodes = Object.keys(this.adjacentList); 
+    for (let node of allNodes) { 
+      let nodeConnections = this.adjacentList[node]; 
+      let connections = ""; 
+      let vertex;
+      for (vertex of Object.keys(nodeConnections)) {
+        connections += vertex + " ";
+      } 
+      console.log(node + "-->" + connections); 
+    } 
+	}
+}
+
+const myGraph = new Graph();
+myGraph.addVertex('0');
+myGraph.addVertex('1');
+myGraph.addVertex('2');
+myGraph.addVertex('3');
+myGraph.addVertex('4');
+myGraph.addVertex('5');
+myGraph.addVertex('6');
+myGraph.addEdge('3', '1'); 
+myGraph.addEdge('3', '4'); 
+myGraph.addEdge('4', '2'); 
+myGraph.addEdge('4', '5'); 
+myGraph.addEdge('1', '2'); 
+myGraph.addEdge('1', '0'); 
+myGraph.addEdge('0', '2'); 
+myGraph.addEdge('6', '5');
+myGraph.showConnections();
