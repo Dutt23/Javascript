@@ -10,7 +10,7 @@ function inception() {
 	return inception();
 }
 
-console.log(inception())
+
 
 
 // O(n)
@@ -24,16 +24,42 @@ function factorialNormal(num = 1) {
 }
 
 // O(n), Calling the functions same numbeer of times as length of num.
-function factorialRecursion(num)
-{
+function factorialRecursion(num) {
 	let sum = 1;
 	// Base case
-	if(num == 1)
-	return num
+	if (num == 1)
+		return num
 
-	sum *= (num * factorialRecursion(num -1 ))
+	sum *= (num * factorialRecursion(num - 1))
 
 	return sum;
 }
-console.log(factorialNormal(5))
-console.log(factorialRecursion(4))
+
+function fibonacciItera(num = 1)
+{
+
+	let numfirst = 0;
+	let numSecond = 1;
+	let sum = numfirst + numSecond;
+	console.log(numfirst)
+	console.log(numSecond)
+	for(let i = 1; i < num - 2; i ++){
+		console.log(sum)
+		numFirst = numSecond;
+		numSecond = sum;
+		sum = numFirst + numSecond
+		
+	}
+	return sum;
+}
+
+function fiboRecu(num = 0){
+	if(num < 2)
+	return num;
+
+	return fiboRecu(num -1) + fiboRecu(num -2)
+}
+// console.log(inception())
+// console.log(factorialNormal(5))
+// console.log(factorialRecursion(4))
+console.log(fiboRecu(8))
