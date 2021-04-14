@@ -53,6 +53,7 @@ function fibonacciItera(num = 1)
 	return sum;
 }
 
+// fb(7) = fb(6) + fb(5)
 function fiboRecu(num = 0){
 	if(num < 2)
 	return num;
