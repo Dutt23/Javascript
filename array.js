@@ -300,8 +300,8 @@ var rightRotate = function (nums, rotation) {
 
 var leftRotate = function (nums, rotation) {
 	reverseArray(nums, 0, rotation - 1)
-	reverseArray(nums, 0, nums.length - 1)
 	reverseArray(nums, rotation, nums.length - 1)
+	reverseArray(nums, 0, nums.length - 1)
 	return nums
 }
 
