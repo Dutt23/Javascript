@@ -30,6 +30,8 @@ function selectionSort(arr = []) {
 	console.log(arr);
 }
 
+// Works best when almost sorted
+// Best case O(n)
 function insertionSort(arr = []) {
 	for (let i = 0; i < arr.length; i++) {
 		let value = arr[i];
