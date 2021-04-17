@@ -15,19 +15,23 @@ function bubbleSort(arr = []) {
 	console.log(arr)
 }
 
-function selectionSort(arr = []) {
-	for (let i = 0; i < arr.length; i++) {
-		let index = i;
-		for (let j = i + 1; j < arr.length; j++) {
-			if (arr[index] > arr[j]) {
-				index = j;
+function selectionSort(arr=[]){
+	for(let i = 0 ; i < arr.length ; i ++)
+	{
+		let min_index = i;
+		for(let j = i +1 ; j < arr.length; j ++)
+		{
+			if(arr[min_index] > arr[j])
+			{
+				min_index = j;
 			}
+			
 		}
-		let temp = arr[index]
-		arr[index] = arr[i];
-		arr[i] = temp;
+		let temp = arr[i];
+			arr[i] = arr[min_index];
+			arr[min_index] = temp;
 	}
-	console.log(arr);
+	console.log(arr)
 }
 
 // Works best when almost sorted
@@ -45,4 +49,4 @@ function insertionSort(arr = []) {
 	console.log(arr)
 }
 const array = [64, 34, 25, 12, 22, 11, 90, 10, 18]
-insertionSort(array)
+selectionSort(array)
