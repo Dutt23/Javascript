@@ -173,7 +173,7 @@ function swap(arr, i, j){
 }
 const array = [64, 34, 25, 12, 22, 11, 90, 10, 18]
 const array2 = [10, 7, 8, 9, 1, 5];
-// mergeSort(array, 0, array.length - 1)
-// console.log(array)
-quicksort(array2, 0, array2.length - 1)
-console.log(array2)
+mergeSort(array, 0, array.length - 1)
+console.log(array)
+// quicksort(array2, 0, array2.length - 1)
+// console.log(array2)
