@@ -194,6 +194,22 @@ class BST {
 		}
 	}
 
+	preOrder = (node) => {
+		if(node !== null){
+			console.log(node.value)
+			this.preOrder(node.left)
+			this.preOrder(node.right)
+		}
+	}
+
+	postOrder = (node) => {
+		if(node !== null){
+			this.postOrder(node.left)
+			this.postOrder(node.right)
+			console.log(node.value)
+		}
+	}
+
 	getNextNode = (node, value) => {
 		return node.value < value ? node.right : node.left
 	}
@@ -217,10 +233,29 @@ console.log(tree.bfsTraverse())
 console.log(tree.bfsTraverseRecursive([tree.root], []))
 // console.log(tree.leftHeight)
 // console.log(tree.rightHeight)
+tree.inOrder(tree.root)
+tree.preOrder(tree.root)
 
+// 9
+// 4 20
+// 1 6 15 170
 function traverse(node) {
 	const tree = { value: node.value };
 	tree.left = node.left === null ? null : traverse(node.left);
 	tree.right = node.right === null ? null : traverse(node.right);
 	return tree;
+}
+
+
+function compare(list1, list2) {
+	let map = {}
+	for(let i = 0 ; i < list2.length; i ++){
+		map[list2[i]] = true;
+	}
+
+	for(let i = 0 ; i < list1.length; i++)
+	{
+		if(!map[list1[i]])
+		console.log(list1[i]);
+	}
 }
