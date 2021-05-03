@@ -25,21 +25,35 @@ class BST {
 
 	bfsTraverse() {
 		let list = [];
-		if(!this.root)
-		return list;
+		if (!this.root)
+			return list;
 		let queue = []
 		let currentNode = this.root
 		queue.push(currentNode)
-		while(queue.length > 0) {
+		while (queue.length > 0) {
 			currentNode = queue.shift();
 			list.push(currentNode.value)
-			if(currentNode.left)
-			queue.push(currentNode.left)
-			if(currentNode.right)
-			queue.push(currentNode.right)
+			if (currentNode.left)
+				queue.push(currentNode.left)
+			if (currentNode.right)
+				queue.push(currentNode.right)
 		}
-
 		return list;
+	}
+
+	bfsTraverseRecursive(queue, list) {
+		if (!queue.length)
+			return list;
+
+		let currentNode = queue.shift();
+		list.push(currentNode.value)
+
+		if (currentNode.left)
+			queue.push(currentNode.left)
+		if (currentNode.right)
+			queue.push(currentNode.right)
+
+		return this.bfsTraverseRecursive(queue, list)
 	}
 	insert(value) {
 		const newNode = new BSTNode(value);
@@ -200,12 +214,13 @@ tree.insert(1)
 console.log("=====")
 console.log(JSON.stringify(traverse(tree.root)))
 console.log(tree.bfsTraverse())
+console.log(tree.bfsTraverseRecursive([tree.root], []))
 // console.log(tree.leftHeight)
 // console.log(tree.rightHeight)
 
 function traverse(node) {
-  const tree = { value: node.value };
-  tree.left = node.left === null ? null : traverse(node.left);
-  tree.right = node.right === null ? null : traverse(node.right);
-  return tree;
+	const tree = { value: node.value };
+	tree.left = node.left === null ? null : traverse(node.left);
+	tree.right = node.right === null ? null : traverse(node.right);
+	return tree;
 }
