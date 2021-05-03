@@ -22,6 +22,25 @@ class BST {
 		this.rightHeight = 0;
 		this.nodes = 0;
 	}
+
+	bfsTraverse() {
+		let list = [];
+		if(!this.root)
+		return list;
+		let queue = []
+		let currentNode = this.root
+		queue.push(currentNode)
+		while(queue.length > 0) {
+			currentNode = queue.shift();
+			list.push(currentNode.value)
+			if(currentNode.left)
+			queue.push(currentNode.left)
+			if(currentNode.right)
+			queue.push(currentNode.right)
+		}
+
+		return list;
+	}
 	insert(value) {
 		const newNode = new BSTNode(value);
 		if (this.root === null) {
@@ -172,14 +191,15 @@ tree.insert(4)
 tree.insert(6)
 tree.insert(20)
 tree.insert(170)
-tree.insert(160)
-tree.insert(190)
-tree.insert(180)
+// tree.insert(160)
+// tree.insert(190)
+// tree.insert(180)
 tree.insert(15)
 tree.insert(1)
-console.log(tree.remove(170))
+// console.log(tree.remove(170))
 console.log("=====")
 console.log(JSON.stringify(traverse(tree.root)))
+console.log(tree.bfsTraverse())
 // console.log(tree.leftHeight)
 // console.log(tree.rightHeight)
 
