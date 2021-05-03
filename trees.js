@@ -235,6 +235,7 @@ console.log(tree.bfsTraverseRecursive([tree.root], []))
 // console.log(tree.rightHeight)
 tree.inOrder(tree.root)
 tree.preOrder(tree.root)
+tree.postOrder(tree.root)
 
 // 9
 // 4 20
