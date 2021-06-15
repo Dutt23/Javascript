@@ -24,3 +24,27 @@ const debounce = function (fn, d) {
 //   debounce(getData, 300)
 // }
 const debounceFunc = debounce(getData, 300)
+
+
+// Call, apply bind
+
+let person ={
+  firstName:"First",
+  lastName : "FirstName",
+}
+
+let printFullName = function(hometown, state){
+  console.log(`My name is ${this.firstName} ${this.lastName} from ${hometown} which is in ${state}`)
+}
+
+let person2 ={
+  firstName:"Secind",
+  lastName : "SecondName",
+}
+// printFullName.call(person, "Kolkatta", "West Bengal")
+// printFullName.call(person2, "Dubai", "United arab emirates")
+// printFullName.apply(person2, ["Dubai", "United arab emirates"])
+
+
+const bindName1 = printFullName.bind(person,"Kolkatta", "West Bengal")
+console.log(bindName1())
