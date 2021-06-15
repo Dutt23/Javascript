@@ -47,4 +47,17 @@ let person2 ={
 
 
 const bindName1 = printFullName.bind(person,"Kolkatta", "West Bengal")
-console.log(bindName1())
+
+// Polfill, basically is env functionality does not exist provide it.
+// Polyfil for bind
+
+
+Function.prototype.customBind = function(ctx){
+  let self = this
+  return function(...params){
+    self.apply(ctx,[...params])
+  }
+}
+
+const customBindName = printFullName.customBind(person)
+customBindName("KolkattaCustom", "West BengalCustom")
