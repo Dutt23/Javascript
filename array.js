@@ -347,24 +347,22 @@ function textWrap(words, length) {
 				line += words[i] + " "
 			}
 			line = line.substr(0, line.length - 1)
-			for(let i = line.length; i <  length ; i ++)
-			line += " "
+			for (let i = line.length; i < length; i++)
+				line += " "
 		}
 		else {
 			let spaces = (length - count) / numberOfWordsBetween
 			let remainder = (length - count) % numberOfWordsBetween
-			
-			for(let i = index ; i <last ; i++)
-			{
+
+			for (let i = index; i < last; i++) {
 				line += words[i];
 
-				if( i < last - 1)
-				{
-					line+=" "
+				if (i < last - 1) {
+					line += " "
 					let limit = spaces + ((i - index) < remainder ? 1 : 0)
 					console.log(limit)
-					for(let j = 0 ; j < limit ; j ++)
-					line += " ";
+					for (let j = 0; j < limit; j++)
+						line += " ";
 				}
 			}
 		}
@@ -382,19 +380,19 @@ function textWrap(words, length) {
 // link : https://www.geeksforgeeks.org/given-an-array-arr-find-the-maximum-j-i-such-that-arrj-arri/
 // Find max j , i where a[j] > a[i]
 
-function maxIndexDiff(array){
+function maxIndexDiff(array) {
 	let rMax = []
 	let lMin = [];
 
 	lMin.unshift(array[0])
-	for(let i =1; i < array.length; i++){
-		let value = lMin[i -1] <= array[i] ? lMin[i -1] : array[i]
-			lMin.push(value)
+	for (let i = 1; i < array.length; i++) {
+		let value = lMin[i - 1] <= array[i] ? lMin[i - 1] : array[i]
+		lMin.push(value)
 	}
 
-	rMax[array.length -1] = array[array.length -1]
-	for(let i = array.length -2 ; i >= 0; i--){
-		let value = rMax[i +1] >= array[i] ? rMax[i +1] : array[i]
+	rMax[array.length - 1] = array[array.length - 1]
+	for (let i = array.length - 2; i >= 0; i--) {
+		let value = rMax[i + 1] >= array[i] ? rMax[i + 1] : array[i]
 		rMax[i] = value;
 	}
 
@@ -404,10 +402,10 @@ function maxIndexDiff(array){
 	let j = 0;
 	let i = 0;
 	let currentMax = -1;
-	while( i < array.length -1 && j < array.length -1){
+	while (i < array.length - 1 && j < array.length - 1) {
 
-		if(rMax[j] > lMin[i]){
-			currentMax=	Math.max(j - i, currentMax)
+		if (rMax[j] > lMin[i]) {
+			currentMax = Math.max(j - i, currentMax)
 			j++
 		}
 		else {
@@ -421,52 +419,52 @@ function maxIndexDiff(array){
 // Maximum Sum Path in Two Arrays
 // Link : https://www.geeksforgeeks.org/maximum-sum-path-across-two-arrays/
 
-function maxPathSum(array1, array2){
+function maxPathSum(array1, array2) {
 	let sum1 = 0
 	let sum2 = 0
-	let i =0;
+	let i = 0;
 	let j = 0;
 
 	const array1Map = []
 	const array2Map = []
 	console.log("maxPathSum")
-	for(let k = 0; k < array1.length; k++){
+	for (let k = 0; k < array1.length; k++) {
 		array1Map[array1[k]] = true;
 	}
 
-	for(let k = 0; k < array2.length; k++){
+	for (let k = 0; k < array2.length; k++) {
 		array2Map[array2[k]] = true;
 	}
 
 	let result = 0;
-	while(i < array1.length && j < array2.length){
-		array1loop : while(i < array1.length){
-			if(array2Map[array1[i]]){
+	while (i < array1.length && j < array2.length) {
+		array1loop: while (i < array1.length) {
+			if (array2Map[array1[i]]) {
 				array2Map[array1[i]] = false;
 				break array1loop;
 			}
-			sum1 +=array1[i];
+			sum1 += array1[i];
 			i++
 		}
 
-		array2loop : while(j < array2.length){
-			if(array1Map[array2[j]]){
+		array2loop: while (j < array2.length) {
+			if (array1Map[array2[j]]) {
 				array1Map[array2[j]] = false;
 				break array2loop;
 			}
-			sum2 +=array2[j];
+			sum2 += array2[j];
 			j++
 		}
 		result += Math.max(sum2, sum1)
-		sum1 =0;
-		sum2 =0
+		sum1 = 0;
+		sum2 = 0
 	}
 
-	while(i < array1.length){
+	while (i < array1.length) {
 		sum1 += array2[i]
 	}
 
-	while(j < array2.length){
+	while (j < array2.length) {
 		sum2 += array2[j]
 	}
 
@@ -478,26 +476,59 @@ function maxPathSum(array1, array2){
 
 // Find the repeating and the missing 
 // Link : https://www.geeksforgeeks.org/find-a-repeating-and-a-missing-number/
-function findMissingNumber(array){
+function findMissingNumber(array) {
 	let actualSum = 0;
 	let currentSum = 0;
 	let dup = 0;
-	for(let i = 0; i < array.length ; i ++){
-		actualSum +=i
+	for (let i = 0; i < array.length; i++) {
+		actualSum += i
 		currentSum += Math.abs(array[i]);
 		let val = Math.abs(array[i])
-		if(array[val - 1] > 0){
+		if (array[val - 1] > 0) {
 			array[val - 1] = -array[val - 1]
 		}
-		else{
+		else {
 			dup = Math.abs(array[i]);
 		}
-	} 
+	}
 	actualSum += array.length
-	console.log("Duplicate element : "  + dup)
+	console.log("Duplicate element : " + dup)
 	let diff = actualSum - currentSum
-	console.log(`Missing element is ${dup + diff}`) 
+	console.log(`Missing element is ${dup + diff}`)
 	// console.log(dup)
 }
 
-findMissingNumber([4, 3, 6, 2, 1, 1])
+// findMissingNumber([4, 3, 6, 2, 1, 1])
+
+// Stock Buy Sell to Maximize Profit
+// Link : https://www.geeksforgeeks.org/stock-buy-sell/
+
+function maxProfit(stocks) {
+	let currentBuyingPrice = stocks[0];
+	let profit = 0;
+	let buyingDay = 0;
+	for (let i = 1; i < stocks.length; i++) {
+		if (stocks[i - 1] > stocks[i]) {
+			profit += stocks[i - 1] - currentBuyingPrice
+			print(buyingDay, currentBuyingPrice, i -1, stocks)
+			currentBuyingPrice = stocks[i];
+			buyingDay = i;
+		}
+		// Handling the end
+		else if (i + 1 === stocks.length) {
+			if (buyingDay + 1 == stocks.length)
+				continue;
+			profit += stocks[i] - currentBuyingPrice
+			print(buyingDay, currentBuyingPrice, i, stocks)
+		}
+	}
+	console.log(profit)
+}
+
+function print(buyingDay, currentBuyingPrice, i, stocks) {
+	console.log(`Bought on ${buyingDay} for : ${currentBuyingPrice}`)
+	console.log(`Sold on ${i} for : ${stocks[i]}`)
+	console.log("======")
+}
+
+maxProfit([100, 180, 260, 310, 40, 535, 695])
