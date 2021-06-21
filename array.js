@@ -353,14 +353,16 @@ function textWrap(words, length) {
 		else {
 			let spaces = (length - count) / numberOfWordsBetween
 			let remainder = (length - count) % numberOfWordsBetween
-
+			
 			for(let i = index ; i <last ; i++)
 			{
 				line += words[i];
 
 				if( i < last - 1)
 				{
+					line+=" "
 					let limit = spaces + ((i - index) < remainder ? 1 : 0)
+					console.log(limit)
 					for(let j = 0 ; j < limit ; j ++)
 					line += " ";
 				}
@@ -372,4 +374,105 @@ function textWrap(words, length) {
 	return lines;
 }
 
-console.log(textWrap(['This', 'is', 'an', 'example', 'of', 'text', 'justification.'], 16))
+// console.log(textWrap(["What","must","be","acknowledgment","shall","be"], 16))
+// console.log(["This    is    an","example  of text","justification.  "])
+
+// Array Hard section geekfor geeks
+
+// link : https://www.geeksforgeeks.org/given-an-array-arr-find-the-maximum-j-i-such-that-arrj-arri/
+// Find max j , i where a[j] > a[i]
+
+function maxIndexDiff(array){
+	let rMax = []
+	let lMin = [];
+
+	lMin.unshift(array[0])
+	for(let i =1; i < array.length; i++){
+		let value = lMin[i -1] <= array[i] ? lMin[i -1] : array[i]
+			lMin.push(value)
+	}
+
+	rMax[array.length -1] = array[array.length -1]
+	for(let i = array.length -2 ; i >= 0; i--){
+		let value = rMax[i +1] >= array[i] ? rMax[i +1] : array[i]
+		rMax[i] = value;
+	}
+
+	// console.log(lMin)
+	// console.log(rMax)
+
+	let j = 0;
+	let i = 0;
+	let currentMax = -1;
+	while( i < array.length -1 && j < array.length -1){
+
+		if(rMax[j] > lMin[i]){
+			currentMax=	Math.max(j - i, currentMax)
+			j++
+		}
+		else {
+			i++
+		}
+	}
+	console.log(currentMax)
+}
+// maxIndexDiff([9, 2, 3, 4, 5, 6, 7, 8, 18, 0])
+
+// Maximum Sum Path in Two Arrays
+// Link : https://www.geeksforgeeks.org/maximum-sum-path-across-two-arrays/
+
+function maxPathSum(array1, array2){
+	let sum1 = 0
+	let sum2 = 0
+	let i =0;
+	let j = 0;
+
+	const array1Map = []
+	const array2Map = []
+	console.log("maxPathSum")
+	for(let k = 0; k < array1.length; k++){
+		array1Map[array1[k]] = true;
+	}
+
+	for(let k = 0; k < array2.length; k++){
+		array2Map[array2[k]] = true;
+	}
+
+	let result = 0;
+	while(i < array1.length && j < array2.length){
+		console.log
+		array1loop : while(i < array1.length){
+			if(array2Map[array1[i]]){
+				array2Map[array1[i]] = false;
+				break array1loop;
+			}
+			sum1 +=array1[i];
+			i++
+		}
+
+		array2loop : while(j < array2.length){
+			if(array1Map[array2[j]]){
+				array1Map[array2[j]] = false;
+				break array2loop;
+			}
+			sum2 +=array2[j];
+			j++
+		}
+		result += Math.max(sum2, sum1)
+		sum1 =0;
+		sum2 =0
+	}
+
+	while(i < array1.length){
+		sum1 += array2[i]
+	}
+
+	while(j < array2.length){
+		sum2 += array2[j]
+	}
+
+	result += Math.max(sum1, sum2)
+	console.log(result)
+}
+
+maxPathSum([2, 3, 7, 10, 12, 15, 30, 34], [1, 5, 7, 8, 10, 15, 16, 19])
