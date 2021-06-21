@@ -440,7 +440,6 @@ function maxPathSum(array1, array2){
 
 	let result = 0;
 	while(i < array1.length && j < array2.length){
-		console.log
 		array1loop : while(i < array1.length){
 			if(array2Map[array1[i]]){
 				array2Map[array1[i]] = false;
@@ -475,4 +474,4 @@ function maxPathSum(array1, array2){
 	console.log(result)
 }
 
-maxPathSum([2, 3, 7, 10, 12, 15, 30, 34], [1, 5, 7, 8, 10, 15, 16, 19])
+maxPathSum([ 3, 6, 7, 8, 10, 12, 15, 18, 100], [1, 2, 3, 5, 7, 9, 10, 11, 15, 16, 18, 25, 50])
