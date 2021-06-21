@@ -52,7 +52,7 @@ const bindName1 = printFullName.bind(person,"Kolkatta", "West Bengal")
 // Polyfil for bind
 
 
-Function.prototype.customBind = function(ctx){
+Function.prototype["customBind"] = function(ctx){
   let self = this
   return function(...params){
     self.apply(ctx,[...params])

@@ -120,4 +120,39 @@ const passOrFail = () =>{
     // console.log(failMap)
 }
 
-passOrFail();
+// passOrFail();
+
+const https = require('https');
+function getResults(limit) {
+    let arr = [];
+    apiCall(277)
+}
+
+async function apiCall(page, arr){
+    
+    const url = `https://jsonmock.hackerrank.com/api/movies/search/?page=${page}`;
+    let resp;
+    const request = await https.request(url, (response) => {
+        let data = ''
+            response.on('data', (chunk)=> { // data is event name here
+            data = data + chunk.toString();
+        })
+    
+        response.on('end', () => {
+           const body = JSON.parse(data);
+           resp = body;
+           console.log(body)
+        })
+    })
+    
+    request.on('error', (error) => {
+        console.log('An erorr', error);
+    })
+    request.end()
+    return resp;
+}
+
+getResults(278);
+
+
+
