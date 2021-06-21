@@ -531,4 +531,4 @@ function print(buyingDay, currentBuyingPrice, i, stocks) {
 	console.log("======")
 }
 
-maxProfit([100, 180, 260, 310, 40, 535, 695])
+maxProfit([100, 180, 260, 310, 40, 535, 534])
