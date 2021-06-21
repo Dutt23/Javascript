@@ -474,4 +474,30 @@ function maxPathSum(array1, array2){
 	console.log(result)
 }
 
-maxPathSum([ 3, 6, 7, 8, 10, 12, 15, 18, 100], [1, 2, 3, 5, 7, 9, 10, 11, 15, 16, 18, 25, 50])
+// maxPathSum([ 3, 6, 7, 8, 10, 12, 15, 18, 100], [1, 2, 3, 5, 7, 9, 10, 11, 15, 16, 18, 25, 50])
+
+// Find the repeating and the missing 
+// Link : https://www.geeksforgeeks.org/find-a-repeating-and-a-missing-number/
+function findMissingNumber(array){
+	let actualSum = 0;
+	let currentSum = 0;
+	let dup = 0;
+	for(let i = 0; i < array.length ; i ++){
+		actualSum +=i
+		currentSum += Math.abs(array[i]);
+		let val = Math.abs(array[i])
+		if(array[val - 1] > 0){
+			array[val - 1] = -array[val - 1]
+		}
+		else{
+			dup = Math.abs(array[i]);
+		}
+	} 
+	actualSum += array.length
+	console.log("Duplicate element : "  + dup)
+	let diff = actualSum - currentSum
+	console.log(`Missing element is ${dup + diff}`) 
+	// console.log(dup)
+}
+
+findMissingNumber([4, 3, 6, 2, 1, 1])
