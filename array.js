@@ -531,4 +531,43 @@ function print(buyingDay, currentBuyingPrice, i, stocks) {
 	console.log("======")
 }
 
-maxProfit([100, 180, 260, 310, 40, 535, 534])
+// maxProfit([100, 180, 260, 310, 40, 535, 534])
+
+// Minimum number of jumps to reach end
+// https://www.geeksforgeeks.org/minimum-number-of-jumps-to-reach-end-of-a-given-array/
+
+function minJumps(array){
+	let stepQueue = []
+	let jumpsReq = 0
+	stepQueue.unshift({
+		steps: array[0],
+		jump : 0,
+		index : 0,
+		previousIndex :0
+	})
+
+	loop1: while(stepQueue.length > 0) {
+		let current = stepQueue.splice(-1).pop();
+		let currentStep = current?.steps;
+		let currentJump = current?.jump;
+		let currentIndex = current?.index;
+
+		if(currentIndex + 1+ array[currentIndex] >= array.length){
+			jumpsReq = currentJump + 1
+			break loop1;
+		}
+		loop2: for(let i = currentIndex + 1 ; i <= currentIndex + currentStep ;i++){
+			stepQueue.push({
+				steps: array[i],
+				jump : currentJump + 1,
+				index : i,
+				previousIndex: currentIndex
+			})
+		}
+		
+	}
+	
+	 console.log(jumpsReq)
+}
+
+minJumps([1, 3, 6, 1, 0, 9])
