@@ -102,7 +102,35 @@ function getMaxNumber(){
   console.log("Call method")
   console.log(max)
 }
-getMaxNumber.call(array)
+// getMaxNumber.call(array)
 
+
+
+const character = {
+  name: 'Simon',
+  getCharacter() {
+    return this.name;
+  }
+};
+const giveMeTheCharacterNOW = character.getCharacter.bind(character);
+ 
+//How Would you fix this?
+console.log('?', giveMeTheCharacterNOW());
+
+// Deep copy
+let obj = {
+  a:'Test',
+  b: 'Test',
+  c :{
+    deep:'Test'
+  }
+}
+
+const clone = Object.assign({}, obj)
+const superClone = JSON.parse(JSON.stringify(obj))
+obj.c.deep = "Changed"
+
+console.log(clone)
+console.log(superClone)
 
         
