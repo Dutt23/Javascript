@@ -133,4 +133,46 @@ obj.c.deep = "Changed"
 console.log(clone)
 console.log(superClone)
 
+const number = 100
+const string = "Jay"
+let obj1 = {
+  value: "a",
+  value2 :{
+    deep:"TEst2"
+  }
+}
+let obj2 = {
+  value: "b",
+  value2 :{
+    deep:"TEst"
+  }
+}
+let obj3 = obj2;
+ 
+
+function change(number, string, obj1, obj4) {
+    number = number * 10;
+    string = "Pete";
+    obj1 = obj4;
+    obj4.value = "$"
+}
+ 
+change(number, string, obj1, obj2);
+
+console.log("===")
+console.log(number); 
+console.log(string);
+console.log(obj1.value);
+console.log(obj2.value);
+
+
+//  internal working of function
+// function getSome(){ console.log("Function"))}
+// Translates into an object like
+// obj = {
+//   name : "getSome",
+//   properties: ["this", "arguments"],
+//   () => console.log("SIS")
+// }
+// Basic idea.
         
