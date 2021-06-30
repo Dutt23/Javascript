@@ -61,3 +61,48 @@ Function.prototype["customBind"] = function(ctx){
 
 const customBindName = printFullName.customBind(person)
 customBindName("KolkattaCustom", "West BengalCustom")
+
+
+// Basic optmisation
+
+var t ="TEST"
+function a(){
+  var t ="CHANGE"
+  b()
+}
+function b(){
+  console.log("INSIDE TWO")
+  console.log(t)
+
+}
+a()
+console.log(t)
+
+
+const array = [1,2,3];
+ 
+function getMaxNumber(arr){
+  //code here  
+  let max = arr[0];
+  for(let i = 1; i < arr.length; i ++){
+    max = Math.max(max, arr[i])
+  }
+  console.log("Normal")
+  console.log(max)
+}
+ 
+// getMaxNumber(array) 
+
+function getMaxNumber(){
+  //code here  
+  let max = Math.max.apply(null, this);
+  // for(let i = 1; i < this.length; i ++){
+  //   max = Math.max(max, this[i])
+  // }
+  console.log("Call method")
+  console.log(max)
+}
+getMaxNumber.call(array)
+
+
+        
