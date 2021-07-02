@@ -11,7 +11,7 @@ const debounce = function (fn, d) {
   let timer;
   console.log("ON")
   return function () {
-     let context = this
+    let context = this
     clearTimeout(timer);
     timer = setTimeout(() => {
       getData.apply(context, arguments);
@@ -28,34 +28,34 @@ const debounceFunc = debounce(getData, 300)
 
 // Call, apply bind
 
-let person ={
-  firstName:"First",
-  lastName : "FirstName",
+let person = {
+  firstName: "First",
+  lastName: "FirstName",
 }
 
-let printFullName = function(hometown, state){
+let printFullName = function (hometown, state) {
   console.log(`My name is ${this.firstName} ${this.lastName} from ${hometown} which is in ${state}`)
 }
 
-let person2 ={
-  firstName:"Secind",
-  lastName : "SecondName",
+let person2 = {
+  firstName: "Secind",
+  lastName: "SecondName",
 }
 // printFullName.call(person, "Kolkatta", "West Bengal")
 // printFullName.call(person2, "Dubai", "United arab emirates")
 // printFullName.apply(person2, ["Dubai", "United arab emirates"])
 
 
-const bindName1 = printFullName.bind(person,"Kolkatta", "West Bengal")
+const bindName1 = printFullName.bind(person, "Kolkatta", "West Bengal")
 
 // Polfill, basically is env functionality does not exist provide it.
 // Polyfil for bind
 
 
-Function.prototype["customBind"] = function(ctx){
+Function.prototype["customBind"] = function (ctx) {
   let self = this
-  return function(...params){
-    self.apply(ctx,[...params])
+  return function (...params) {
+    self.apply(ctx, [...params])
   }
 }
 
@@ -65,12 +65,12 @@ customBindName("KolkattaCustom", "West BengalCustom")
 
 // Basic optmisation
 
-var t ="TEST"
-function a(){
-  var t ="CHANGE"
+var t = "TEST"
+function a() {
+  var t = "CHANGE"
   b()
 }
-function b(){
+function b() {
   console.log("INSIDE TWO")
   console.log(t)
 
@@ -79,21 +79,21 @@ a()
 console.log(t)
 
 
-const array = [1,2,3];
- 
-function getMaxNumber(arr){
+const array = [1, 2, 3];
+
+function getMaxNumber(arr) {
   //code here  
   let max = arr[0];
-  for(let i = 1; i < arr.length; i ++){
+  for (let i = 1; i < arr.length; i++) {
     max = Math.max(max, arr[i])
   }
   console.log("Normal")
   console.log(max)
 }
- 
+
 // getMaxNumber(array) 
 
-function getMaxNumber(){
+function getMaxNumber() {
   //code here  
   let max = Math.max.apply(null, this);
   // for(let i = 1; i < this.length; i ++){
@@ -113,16 +113,16 @@ const character = {
   }
 };
 const giveMeTheCharacterNOW = character.getCharacter.bind(character);
- 
+
 //How Would you fix this?
 console.log('?', giveMeTheCharacterNOW());
 
 // Deep copy
 let obj = {
-  a:'Test',
+  a: 'Test',
   b: 'Test',
-  c :{
-    deep:'Test'
+  c: {
+    deep: 'Test'
   }
 }
 
@@ -137,30 +137,30 @@ const number = 100
 const string = "Jay"
 let obj1 = {
   value: "a",
-  value2 :{
-    deep:"TEst2"
+  value2: {
+    deep: "TEst2"
   }
 }
 let obj2 = {
   value: "b",
-  value2 :{
-    deep:"TEst"
+  value2: {
+    deep: "TEst"
   }
 }
 let obj3 = obj2;
- 
+
 
 function change(number, string, obj1, obj4) {
-    number = number * 10;
-    string = "Pete";
-    obj1 = obj4;
-    obj4.value = "$"
+  number = number * 10;
+  string = "Pete";
+  obj1 = obj4;
+  obj4.value = "$"
 }
- 
+
 change(number, string, obj1, obj2);
 
 console.log("===")
-console.log(number); 
+console.log(number);
 console.log(string);
 console.log(obj1.value);
 console.log(obj2.value);
@@ -175,4 +175,43 @@ console.log(obj2.value);
 //   () => console.log("SIS")
 // }
 // Basic idea.
-        
+
+
+
+var theThing = null;
+
+var replaceThing = function () {
+  var priorThing = theThing;  // hold on to the prior thing
+  var unused = function () {
+    // 'unused' is the only place where 'priorThing' is referenced,
+    // but 'unused' never gets invoked
+    if (priorThing) {
+      console.log("hi");
+    }
+  };
+  theThing = {
+    longStr: new Array(1000000).join('*'),  // create a 1MB object
+    someMethod: function () {
+      console.log(someMessage);
+    }
+  };
+};
+setInterval(replaceThing, 1000);
+
+// const array2 = [1, 2, 3, 4];
+
+// for(var j = 0; j < array2.length; j++){
+//   setTimeout(function(){
+//     console.log(j)
+//   },1000)
+// }
+
+const customArr = [1, 2, 3, 4];
+for (var i = 0; i < customArr.length; ++i) {
+  (function (index) {
+    setTimeout(function () {
+      console.log('I am at index ' + customArr[index])
+    }, 3000)
+  })(i)
+
+}
