@@ -58,6 +58,14 @@ Date.prototype.lastYear = function(){
  }
  console.log([1,2,3].map())
 
+
+ Function.proptotype.customBind = function(context){
+   var self = this;
+   return function(params){
+     self.apply(context, [...params])
+   }
+ }
+
 // Object is a function, which creates the object prototype
 // Object.proptotype is an object
 // Only functions have the prototype property
