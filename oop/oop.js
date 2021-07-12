@@ -14,6 +14,28 @@
 //   }
 // }
 
+// Explicit this binding
+
+const person45 = {
+  name:'Shatyaki',
+  age: 40,
+  hi: function(){
+    console.log('hi ' + this.setTimeout)
+  }.bind(globalThis)
+}
+
+const innerTest = {
+  name:'Shatyaki',
+  age: 40,
+  hi: function(){
+    const test = () => {
+      console.log(`hi name ${this.name}`)
+    }
+    test()
+  }
+}
+person45.hi()
+
 // Factory function
 const elfFactory = {
   attack() {
@@ -56,6 +78,25 @@ ElfCreator.prototype.attack = function(){
 }
 
 // With new keyword, it is attached to the object calling it
+// New keyword creates the prototype for us to use
 const sarah = new ElfCreator('Sarah', 'Brick')
 console.log(sam.attack())
 console.log(sarah.attack())
+
+// ES6 class
+
+
+class Test{
+  constructor(name, weapon){
+    this.name = name;
+    this.weapon = weapon;
+  }
+  // Shared by all instances of classes.
+  // if kept inside the constructor, each time a new one will be creator
+  attack(){
+    return `Attack with ${this.weapon}`
+  }
+}
+
+const test = new Test('Shatyaki', 'Dutt')
+console.log(test.name)
