@@ -85,3 +85,41 @@ const makePositive = (num) => Math.abs(num)
 const multiply3AndAbsolute = compose(multipleby3, makePositive)
 
 console.log(multiply3AndAbsolute(-50))
+
+
+// Inheritence
+//Defining what it is, predicting what it is in the future
+// frgaile sub class problem, remember milvik and Subscription handler
+// Child and parent tight coupling.
+// Hierarchy, methods you do not need.
+// Gorilla , jungle problem. You want a banna but in the end you get everything. A Gorilla, with a banana, underneath a jungle
+
+
+//Composition
+// Code concerned with what it has
+
+function attachFunctionality(obj){
+  return Object.assign({}, obj, {attack: () => "attack"})
+}
+
+
+// inheritance
+class SuperAttack{
+   attack(){
+
+  }
+
+  peace(){
+
+  }
+}
+
+// Getting methods and other things which is not required
+
+class NeedAttack extends SuperAttack{
+  
+}
+
+class DoesNotNeedAttack extends SuperAttack{
+  
+}
