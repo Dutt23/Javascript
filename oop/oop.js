@@ -34,7 +34,7 @@ const innerTest = {
     test()
   }
 }
-person45.hi()
+// person45.hi()
 
 // Factory function
 const elfFactory = {
@@ -100,3 +100,24 @@ class Test{
 
 const test = new Test('Shatyaki', 'Dutt')
 console.log(test.name)
+
+class Character{
+  constructor(name, weapon){
+    this.name = name;
+    this.weapon = weapon
+  }
+
+  attack (){
+    console.log(`Attacking with ${this.weapon}`)
+  }
+}
+
+class Elf2 extends Character{
+  constructor(name, weapon, type){
+    super(name, weapon);
+    this.type = type
+  }
+}
+
+const dobby = new Elf2('Dobby', 'Cloth', 'House elf')
+console.log(dobby.name)
