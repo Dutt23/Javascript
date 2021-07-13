@@ -62,3 +62,26 @@ console.log(multiplyBy5(3))
 
 const multiplyBy5Bind = multiply.bind(this, 5)
 console.log(multiplyBy5Bind(3))
+
+// Partial application
+
+const multiplyPar = (a,b,c) => a*b*c;
+
+const partialMultipleBy5 = multiplyPar.bind(null, 5)
+console.log(partialMultipleBy5(4, 10))
+
+// Compose
+// fn1(fn2(fn3(50)))
+// compose(fn1, fn2, fn3)(50)
+
+// Pipe
+// fn1(fn2(fn3(50)))
+// pipe(fn3, fn2, fn1)(50)
+
+const compose = (f, g) => (data) => f(g(data))
+const pip = (f, g) => (data) => g(f(data))
+const multipleby3 = (num) => num*3
+const makePositive = (num) => Math.abs(num)
+const multiply3AndAbsolute = compose(multipleby3, makePositive)
+
+console.log(multiply3AndAbsolute(-50))
