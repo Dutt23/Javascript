@@ -37,3 +37,28 @@ function mul(num){
 const num = 8;
 mul(num)
 console.log(num)
+
+
+// Idempotence
+// Given param return same result
+function notGood(num){
+  return Math.random(num)
+}
+
+notGood(5)
+
+// Imperativr bs Declarative
+
+// Tells how to exactly do things, Imperative
+// Tells just do this, how it's done it's on him, Declarative.
+
+
+// Currying
+const multiply = (a, b) => a*b;
+
+const curriedFunction = (a) => (b) => multiply(a, b)
+const multiplyBy5 = curriedFunction(5)
+console.log(multiplyBy5(3))
+
+const multiplyBy5Bind = multiply.bind(this, 5)
+console.log(multiplyBy5Bind(3))
