@@ -17,7 +17,7 @@ const funcList = [
 let index = 0;
 
 function executeRand(num, func){
-  func()
+   addNum()
 }
 
 while(iteration--) {
@@ -33,7 +33,7 @@ while(iteration--) {
     test:'ete'
   }, subNum)
   // executeRand(objA, subNum)
-  executeRand(2, addNum)
+  executeRand(2, 'sisnisnsinsisnisnisn')
   // add(numA, numbB)
 }
 function subNum(){
