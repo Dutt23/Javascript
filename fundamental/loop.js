@@ -5,7 +5,9 @@
 File.runContents();
 
 const pendingTimers = [];
+// Active request or operation , https call
 const pendingOsTasks = [];
+// Something running in a libuv thread
 const pendingOperations = [];
 
 
@@ -22,6 +24,7 @@ return pendingTimers.length || pendingOsTasks.length || pendingOperations.length
 while(shouldContinue()){
 
 // 1) Pending timers, any funcs ready to be called. eg : timer expires, setTimeout, setInterval
+
 // 2) looks at pending os tasks or operationss, executes call back. eg: Request coming on port, or file has been fetched
 
 // 3) Pause execution, Coninue when new tasks are added
