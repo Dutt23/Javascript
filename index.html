@@ -5,7 +5,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shatyaki Dutt</title>
-  <script src="spatial-grid/grid-test.js" type="module"></script>
+  <script>
+    var source = new EventSource('http://localhost:3006/internal/v4/workspaces/sse/event');
+    source.onmessage = (e) => {
+      console.log("DATATAA")
+     console.log(e.data);
+}
+  </script>
 </head>
 
 <body>
